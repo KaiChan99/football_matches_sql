@@ -46,7 +46,7 @@ SELECT COUNT(*) FROM matches WHERE (division_code = 'D1') and (hometeam = 'Freib
 -- SELECT DISTINCT (hometeam,awayteam) FROM matches WHERE (LOWER(hometeam) LIKE LOWER('%City%')) OR (LOWER(awayteam) LIKE LOWER('%City%'))
 -- Wrong code That I wanna keep
 
-SELECT DISTINCT (hometeam) FROM matches WHERE (LOWER(hometeam) LIKE LOWER('%City%'))
+SELECT DISTINCT (hometeam) FROM matches WHERE (LOWER(hometeam) LIKE LOWER('%City%'));
 ```
 
 6) How many different teams have played in matches recorded in a French division?
@@ -56,16 +56,19 @@ SELECT DISTINCT (hometeam) FROM matches WHERE (LOWER(hometeam) LIKE LOWER('%City
 SELECT code FROM divisions WHERE country = 'France'; -- > returns F1 and F2 -->
 
 
-SELECT DISTINCT hometeam FROM matches WHERE (division_code = 'F1') OR (division_code = 'F2')
+SELECT COUNT(DISTINCT hometeam) FROM matches WHERE (division_code = 'F1') OR (division_code = 'F2');
+
+SELECT COUNT(DISTINCT hometeam) FROM matches WHERE (division_code IN 'F1', 'F2');
 
 -- Found 61 rows but don't know how to display using COUNT
+-- FIXED
 ```
 
 7) Have Huddersfield played Swansea in the period covered?
 
 ```sql
 <!-- Copy solution here -->
-SELECT COUNT (*) FROM matches WHERE (hometeam,awayteam) = ('Huddersfield','Swansea') OR ((hometeam,awayteam) = ('Swansea','Huddersfield'))
+SELECT COUNT (*) FROM matches WHERE (hometeam,awayteam) = ('Huddersfield','Swansea') OR ((hometeam,awayteam) = ('Swansea','Huddersfield'));
 
 
 ```
@@ -74,7 +77,7 @@ SELECT COUNT (*) FROM matches WHERE (hometeam,awayteam) = ('Huddersfield','Swans
 
 ```sql
 <!-- Copy solution here -->
-SELECT COUNT (*) FROM matches WHERE (division_code = 'N1') AND (season BETWEEN 2010 AND 2015) AND (ftr = 'D')
+SELECT COUNT (*) FROM matches WHERE (division_code = 'N1') AND (season BETWEEN 2010 AND 2015) AND (ftr = 'D');
 
 
 ```
